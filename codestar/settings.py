@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'unsafe-default-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = False
 
 ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -58,8 +58,12 @@ WSGI_APPLICATION = 'codestar.wsgi.application'
 # Database configuration from DATABASE_URL environment variable (Heroku setting)
 import os
 import dj_database_url
+if os.path.isfile('env.py'):
+    import env
 
-DATABASES = {}
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+             }
 
 DATABASE_URL = os.getenv('DATABASE_URL')
 if DATABASE_URL:
