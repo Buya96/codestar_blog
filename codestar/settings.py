@@ -6,7 +6,8 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'emy9&_upug$r)duoh-*$s!y^p3$-21nbzb1+@035ub(zuspgnr')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -62,8 +63,12 @@ if os.path.isfile('env.py'):
     import env
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-             }
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3"))
+}
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.codeinstitute-ide.net/",
+    "https://*.herokuapp.com"
+]
 
 DATABASE_URL = os.getenv('DATABASE_URL')
 if DATABASE_URL:
