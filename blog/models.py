@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Post(models.Model):
-    STATUS = ((0, "Draft"), (1, "Published"))
+    STATUS = ((0, "Draft"), (1, "Published"))  # ✅ Define STATUS first!
     
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -12,6 +12,6 @@ class Post(models.Model):
     )
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    status = models.IntegerField(choices=STATUS, default=0)
+    status = models.IntegerField(choices=STATUS, default=0)  # ✅ Now STATUS exists
     excerpt = models.TextField(blank=True)
-    updated_on = models.DateTimeField(auto_now=True)
+
