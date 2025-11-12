@@ -10,7 +10,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'emy9&_upug$r)duoh-*$s!y^p3$-21nbzb1+@
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 
