@@ -12,6 +12,7 @@ class Post(models.Model):
     )
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)  # or null=True, blank=True if needed
     status = models.IntegerField(choices=STATUS, default=0)  # ✅ Now STATUS exists
     excerpt = models.TextField(blank=True)
     class Meta:
